@@ -1,0 +1,18 @@
+## IGNORING FOLDERS
+node_modules/
+.git/
+.idea/
+.cache/
+public/
+
+## IGNORING FILES
+netlify.toml
+LICENSE.md
+README.md
+stackbit.yaml
+stackbit-build.sh
+.gitignore
+.nvmrc
+Dockerfile
+.dockerignore
+Jenkinsfile
