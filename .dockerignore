@@ -4,6 +4,7 @@ node_modules/
 .idea/
 .cache/
 public/
+kube-conf/
 
 ## IGNORING FILES
 netlify.toml

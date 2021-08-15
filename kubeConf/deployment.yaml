@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devosc-blog-deployment
+  namespace: production
+spec:
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 25%
+  selector:
+    matchLabels:
+      app: devosc-blog
+  template:
+    metadata:
+      namespace: production
+      name: devosc-blog-pod
+      labels:
+        app: devosc-blog
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: web
+          image: oscmedgon/devosc-blog:0.0.1
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          livenessProbe:
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            httpGet:
+              port: 8080
+              path: /
+          readinessProbe:
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            httpGet:
+              port: 8080
+              path: /
+          securityContext:
+            runAsUser: 101
+            runAsGroup: 101
+            runAsNonRoot: true
+            privileged: false
+            allowPrivilegeEscalation: false
+
