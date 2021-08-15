@@ -47,7 +47,6 @@ pipeline {
                 STACKBIT_API_KEY = credentials('STACKBIT_API_KEY')
             }
             steps {
-                unstash "app_build"
                 sh("docker login -u $DOCKER_ACCESS_USERNAME -p $DOCKER_ACCESS_TOKEN")
                 sh("docker build \
                     -t $IMAGE_BASE_NAME:$VERSION \
